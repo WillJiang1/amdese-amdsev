@@ -1,0 +1,36 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+Name: Build Kernel and Qemu
+
+on:
+  push:
+    branches:
+      - aizel
+
+jobs: 
+  build_package:
+    Name: Build Kernel Package
+    runs-on: bare-matel
+    permissions:
+     contents: 'read'
+     id-token: 'write'
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Checkout submodules
+        run: git submodule update --init --recursive 
+      - name: Get and set the current date
+        run: |
+          TODAY=$(date "+%F")
+          echo "TODAY=${TODAY}" >> $GITHUB_ENV
+      - name: Build
+        run: ./build.sh --package
+      - name: Upload to Google Cloud Storage
+        run: gcloud storage cp ./snp-release-${{ env.TODAY }}

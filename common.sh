@@ -118,7 +118,10 @@ build_kernel()
 			run_cmd ./scripts/config --enable MLXSW_SPECTRUM_DCB
 			run_cmd ./scripts/config --module MLXSW_MINIMAL
 			run_cmd ./scripts/config --module MLXFW
-
+			run_cmd ./scripts/config --enable CONFIG_CRYPTO_ECC
+			run_cmd ./scripts/config --enable CONFIG_CRYPTO_ECDH
+			run_cmd ./scripts/config --enable CONFIG_CRYPTO_ECDSA
+			run_cmd ./scripts/config --enable CONFIG_CGROUP_MISC
 			run_cmd echo $COMMIT >../../source-commit.kernel.$V
 		popd >/dev/null
 
