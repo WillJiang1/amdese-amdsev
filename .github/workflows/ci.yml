@@ -33,4 +33,4 @@ jobs:
       - name: Build
         run: ./build.sh --package
       - name: Upload to Google Cloud Storage
-        run: gcloud storage cp ./snp-release-${{ env.TODAY }} gs://aizel-kernel-artifact/snp-release-${{ env.TODAY }}
+        run: gcloud storage cp -r ./snp-release-${{ env.TODAY }} gs://aizel-kernel-artifact/snp-release-${{ env.TODAY }}
