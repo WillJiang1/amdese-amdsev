@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-Name: Build Kernel and Qemu
+name: Build Kernel and Qemu
 
 on:
   push:
@@ -16,7 +16,7 @@ on:
 
 jobs: 
   build_package:
-    Name: Build Kernel Package
+    name: Build Kernel Package
     runs-on: bare-matel
     permissions:
      contents: 'read'
